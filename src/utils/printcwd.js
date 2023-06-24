@@ -1,3 +1,3 @@
 export function printcwd() {
-  console.log(`You are currently in ${process.cwd()}`);
+  console.log(`\nYou are currently in ${process.cwd()}`);
 }
