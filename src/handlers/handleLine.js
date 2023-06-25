@@ -1,12 +1,17 @@
 import { printcwd, INPUT_ERROR_MESSAGE } from '../utils/index.js';
 import { handleUp } from './handleUp.js';
+import { handleCd } from './handleCd.js';
 
 export function handleLine(rl, line) {
   const [cmd, ...args] = line.trim().replace(/\s+/g, ' ').split(' ');
+  const argsSize = args.length;
 
-  if (cmd === 'up' && args.length === 0) {
+  if (cmd === 'up' && argsSize === 0) {
     handleUp();
-  } else if (cmd === '.exit' && args.length === 0) {
+  } else if (cmd === 'cd' && argsSize === 1) {
+    const [pathToDir] = args;
+    handleCd(pathToDir);
+  } else if (cmd === '.exit' && argsSize === 0) {
     rl.close();
     return;
   } else {
