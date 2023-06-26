@@ -13,8 +13,8 @@ const rl = readline.createInterface({
   prompt: '> ',
 });
 
-rl.on('line', (line) => {
-  handleLine(rl, line);
+rl.on('line', async (line) => {
+  await handleLine(rl, line);
 });
 
 rl.on('close', () => {
