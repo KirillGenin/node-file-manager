@@ -3,6 +3,7 @@ import { handleUp } from './handleUp.js';
 import { handleCd } from './handleCd.js';
 import { handleLs } from './handleLs.js';
 import { handleCat } from './handleCat.js';
+import { handleAdd } from './handleAdd.js';
 
 export async function handleLine(rl, line) {
   const [cmd, ...args] = line.trim().replace(/\s+/g, ' ').split(' ');
@@ -18,11 +19,14 @@ export async function handleLine(rl, line) {
   } else if (cmd === 'cat' && argsSize === 1) {
     const [pathToFile] = args;
     await handleCat(pathToFile);
+  } else if (cmd === 'add' && argsSize === 1) {
+    const [newFileName] = args;
+    await handleAdd(newFileName);
   } else if (cmd === '.exit' && argsSize === 0) {
     rl.close();
     return;
   } else {
-    console.error(INPUT_ERROR_MESSAGE);
+    console.log('\x1b[33m' + INPUT_ERROR_MESSAGE + '\x1b[0m');
   }
 
   printcwd();
