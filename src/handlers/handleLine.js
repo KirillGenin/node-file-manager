@@ -7,6 +7,7 @@ import { handleAdd } from './handleAdd.js';
 import { handleRn } from './handleRn.js';
 import { handleCp } from './handleCp.js';
 import { handleMv } from './handleMv.js';
+import { handleRm } from './handleRm.js';
 
 export async function handleLine(rl, line) {
   const [cmd, ...args] = line.trim().replace(/\s+/g, ' ').split(' ');
@@ -34,6 +35,9 @@ export async function handleLine(rl, line) {
   } else if (cmd === 'mv' && argsSize === 2) {
     const [pathToFile, pathToNewDir] = args;
     await handleMv(pathToFile, pathToNewDir);
+  } else if (cmd === 'rm' && argsSize === 1) {
+    const [pathToFile] = args;
+    await handleRm(pathToFile);
   } else if (cmd === '.exit' && argsSize === 0) {
     rl.close();
     return;
