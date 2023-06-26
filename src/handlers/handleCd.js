@@ -1,10 +1,7 @@
-import path from 'node:path';
-import { OPERATION_ERROR_MESSAGE } from '../utils/index.js';
+import { OPERATION_ERROR_MESSAGE, getAbsolutePath } from '../utils/index.js';
 
 export function handleCd(pathToDir) {
-  const pathToDirAbs = path.isAbsolute(pathToDir)
-    ? pathToDir
-    : path.join(process.cwd(), pathToDir);
+  const pathToDirAbs = getAbsolutePath(pathToDir);
 
   try {
     process.chdir(pathToDirAbs);
