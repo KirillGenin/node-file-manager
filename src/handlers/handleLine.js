@@ -10,6 +10,7 @@ import { handleMv } from './handleMv.js';
 import { handleRm } from './handleRm.js';
 import { handleOs } from './handleOs.js';
 import { handleHash } from './handleHash.js';
+import { handleCompress } from './handleCompress.js';
 
 export async function handleLine(rl, line) {
   const [cmd, ...args] = line.trim().replace(/\s+/g, ' ').split(' ');
@@ -46,6 +47,9 @@ export async function handleLine(rl, line) {
   } else if (cmd === 'hash' && argsSize === 1) {
     const [pathToFile] = args;
     await handleHash(pathToFile);
+  } else if (cmd === 'compress' && argsSize === 2) {
+    const [pathToFile, pathToNewDir] = args;
+    await handleCompress(pathToFile, pathToNewDir);
   } else if (cmd === '.exit' && argsSize === 0) {
     rl.close();
     return;
